@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: docker-nodejs-demo
+  namespace: hvag-demo
+  labels:
+    environment: dev
+    department: IT
+
+spec:
+  type: NodePort
+
+  selector:
+    run: nginx
+
+  ports:
+  - name: http
+    port: 80
+    nodePort: 3000
+    targetPort: nginx-port
