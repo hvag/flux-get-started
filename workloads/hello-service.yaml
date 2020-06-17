@@ -4,18 +4,15 @@ kind: Service
 metadata:
   name: docker-nodejs-demo
   namespace: hvag-demo
-  labels:
-    environment: dev
-    department: IT
 
 spec:
   type: NodePort
 
   selector:
-    run: nginx
+    app: docker-nodejs-demo
 
   ports:
-  - name: http
-    port: 80
-    nodePort: 3000
-    targetPort: nginx-port
+  - port: 80
+    protocol: TCP
+    targetPort: nodejs-port
+
