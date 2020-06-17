@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: docker-nodejs-demo
+  namespace: hvag-demo
+  labels:
+    app: docker-nodejs-demo
+  annotations:
+    fluxcd.io/automated: "true"
+    fluxcd.io/tag.docker-nodejs-demo: semver:~2.0.0
+
+
+spec:
+
+  selector:
+    matchLabels:
+      app: docker-nodejs-demo
+
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+
+  template:
+    metadata:
+      labels:
+        app: docker-nodejs-demo
+    spec:
+      containers:
+      - name: docker-nodejs-demo
+        image: markshaw/express-hello-world:2.1
+        ports:
+        - name: nodejs-port
+          containerPort: 3000
+        resources:
+          limits:
+            memory: "40Mi"
+            cpu: "200m"
