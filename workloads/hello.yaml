@@ -9,7 +9,7 @@ metadata:
     app: docker-nodejs-demo
   annotations:
     fluxcd.io/automated: "true"
-    fluxcd.io/tag.docker-nodejs-demo: semver:~2.0.0
+    fluxcd.io/tag.docker-nodejs-demo: semver:~3.0
 
 
 spec:
@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
       - name: docker-nodejs-demo
-        image: markshaw/express-hello-world:2.0
+        image: markshaw/express-hello-world:3.0
         ports:
         - name: nodejs-port
           containerPort: 3000
